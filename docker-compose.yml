@@ -1,0 +1,39 @@
+services:
+
+  db:
+    image: postgres:15
+    container_name: todo-db
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    ports:
+      - "${DB_PORT}:5432"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+
+
+  backend:
+    build: ./backend
+    container_name: todo-backend
+    volumes:
+      - ./backend:/app
+      - /app/node_modules
+    ports:
+      - "${BACKEND_PORT}:4000"
+    depends_on:
+      - db
+
+  frontend:
+    build: ./frontend
+    container_name: todo-frontend
+    ports:
+      - "${FRONTEND_PORT}:5173"
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    depends_on:
+      - backend
+
+volumes:
+  db_data:

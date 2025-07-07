@@ -1,0 +1,27 @@
+body {
+  background: #222;
+}
+
+.ant-checkbox-label {
+  color: white;
+}
+
+.ant-card-head {
+  border-color: #222 !important;
+}
+
+.contenedor-mensaje-listado{
+  color: #bebebe;
+  text-align: center;
+  padding: 12px;
+  background: #232323;
+  border-radius: 11px;
+  margin: 0px 320px;
+}
+
+.home-container{
+  display: flex;
+  justify-content:center;
+  background: #222;
+  height:100%;
+}
